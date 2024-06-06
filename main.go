@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"github.com/joho/godotenv"
 	tele "gopkg.in/telebot.v3"
+	"gopkg.in/telebot.v3/middleware"
 	"log"
 	"os"
+	"strconv"
 )
 
 func main() {
@@ -32,6 +34,14 @@ func main() {
 			ParseMode: tele.ModeHTML,
 		})
 	})
+
+	lzhedvachID, err := strconv.ParseInt(os.Getenv("LZHEDVACH_ID"), 10, 64)
+	if err != nil {
+		log.Fatal()
+		return
+	}
+
+	b.Use(middleware.Whitelist(lzhedvachID))
 
 	b.Start()
 }
