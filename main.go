@@ -1,13 +1,12 @@
 package main
 
 import (
-	"fmt"
 	"github.com/joho/godotenv"
+	"github.com/n8b8dy/lzhedvach-bot/functionality/information"
+	"github.com/n8b8dy/lzhedvach-bot/functionality/lzhedvacher"
 	tele "gopkg.in/telebot.v3"
-	"gopkg.in/telebot.v3/middleware"
 	"log"
 	"os"
-	"strconv"
 )
 
 func main() {
@@ -27,21 +26,9 @@ func main() {
 		return
 	}
 
-	b.Handle("/start", func(c tele.Context) error {
-		text := fmt.Sprintf("Hi, %s! This is a bot, created by @n8body, specially for <b>Lzhedvach</b> group.", c.Message().Sender.FirstName)
-
-		return c.Reply(text, &tele.SendOptions{
-			ParseMode: tele.ModeHTML,
-		})
-	})
-
-	lzhedvachID, err := strconv.ParseInt(os.Getenv("LZHEDVACH_ID"), 10, 64)
-	if err != nil {
-		log.Fatal()
-		return
-	}
-
-	b.Use(middleware.Whitelist(lzhedvachID))
+	// Groups
+	information.CreateGroup(b)
+	lzhedvacher.CreateGroup(b)
 
 	b.Start()
 }
