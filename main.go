@@ -1,12 +1,15 @@
 package main
 
 import (
-	"github.com/joho/godotenv"
-	"github.com/n8b8dy/lzhedvach-bot/functionality/information"
-	"github.com/n8b8dy/lzhedvach-bot/functionality/lzhedvacher"
-	tele "gopkg.in/telebot.v3"
 	"log"
 	"os"
+
+	"github.com/joho/godotenv"
+	tele "gopkg.in/telebot.v3"
+
+	"github.com/n8b8dy/lzhedvach-bot/functionality/information"
+	"github.com/n8b8dy/lzhedvach-bot/functionality/lzhedvacher"
+	"github.com/n8b8dy/lzhedvach-bot/functionality/utils"
 )
 
 func main() {
@@ -29,6 +32,7 @@ func main() {
 	// Groups
 	information.CreateGroup(b)
 	lzhedvacher.CreateGroup(b)
+	utils.CreateGroup(b)
 
 	b.Start()
 }
