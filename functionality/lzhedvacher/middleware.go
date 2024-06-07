@@ -17,7 +17,7 @@ func AllowLzhedvachOnly() tele.MiddlewareFunc {
 
 	return func(next tele.HandlerFunc) tele.HandlerFunc {
 		return func(c tele.Context) error {
-			if c.Chat().ID == lzhedvachID {
+			if c.Chat().ID != lzhedvachID {
 				return nil
 			}
 
