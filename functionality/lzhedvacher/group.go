@@ -1,11 +1,12 @@
 package lzhedvacher
 
 import (
-	tele "gopkg.in/telebot.v3"
-	"gopkg.in/telebot.v3/middleware"
 	"log"
 	"os"
 	"strconv"
+
+	tele "gopkg.in/telebot.v3"
+	"gopkg.in/telebot.v3/middleware"
 )
 
 func CreateGroup(b *tele.Bot) {
