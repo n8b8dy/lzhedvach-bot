@@ -12,6 +12,7 @@ func CreateGroup(b *tele.Bot) {
 	group.Use(AllowLzhedvachOnly())
 
 	client := openai.NewClient(os.Getenv("OPENAI_KEY"))
-
 	group.Handle(tele.OnText, createChatterTextHandler(client))
+
+	group.Handle(tele.OnText, daTextHandler)
 }
